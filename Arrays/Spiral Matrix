@@ -1,0 +1,39 @@
+// Leetcode -> 54. Spiral Matrix
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        if(matrix.empty()) return {};
+        int m = matrix.size();
+        int n = matrix[0].size();
+        int total = m*n;
+        int count = 0;
+        int sRow = 0;
+        int sCol = 0;
+        int eRow = m-1;
+        int eCol = n-1;
+        vector<int>ans;
+        while(count<total){
+            for(int i = sCol;i<=eCol && count<total;i++){
+                ans.push_back(matrix[sRow][i]);
+                count++;
+            }
+            sRow++;
+            for(int i = sRow;i<=eRow && count< total;i++){
+                ans.push_back(matrix[i][eCol]);
+                count++;
+            }
+            eCol--;
+            for(int i = eCol;i>=sCol && count<total;i--){
+                ans.push_back(matrix[eRow][i]);
+                count++;
+            }
+            eRow--;
+            for(int i = eRow;i>=sRow && count < total;i--){
+                ans.push_back(matrix[i][sCol]);
+                count++;
+            }
+            sCol++;
+        }
+        return ans;
+    }
+};
