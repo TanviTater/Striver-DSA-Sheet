@@ -1,0 +1,16 @@
+// GeeksForGeeks ->Implement Upper Bound
+class Solution {
+  public:
+    int upperBound(vector<int>& arr, int target) {
+        int s = 0;
+        int e = arr.size();
+        while(s<e){
+            int mid = s+(e-s)/2;
+            if(arr[mid] <= target)
+                s = mid + 1;
+            else
+                e = mid;
+        }
+        return s;
+    }
+};
