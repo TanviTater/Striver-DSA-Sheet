@@ -1,0 +1,17 @@
+// LeetCode -> 9. Palindrome Number
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        string S = to_string(x);
+        int s = 0;
+        int e = S.size()-1;
+        while(s<=e){
+            if(S[s] != S[e]){
+                return false;
+            }
+            s++;
+            e--;
+        }
+        return true;
+    }
+};
