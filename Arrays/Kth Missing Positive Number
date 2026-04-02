@@ -1,0 +1,22 @@
+// LeetCode -> 1539. Kth Missing Positive Number
+class Solution {
+public:
+    int findKthPositive(vector<int>& arr, int k) {
+        int i =1;
+        int j =0;
+        int count =0;
+        for(j = 0 ;j<arr.size();j++){
+            while(arr[j] != i){
+                count++;
+                if(count == k){
+                    return i;
+                }
+                i++;
+            }
+            i++;
+        }
+        if(count == 0) return arr[arr.size()-1]+k;
+        else if(count < k) return arr[arr.size()-1]+k-count;
+        return 0;
+    }
+};
