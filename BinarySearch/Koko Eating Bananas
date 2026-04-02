@@ -1,0 +1,31 @@
+// 875. Koko Eating Bananas
+class Solution {
+public:
+bool possible(vector<int>&piles,int h,int mid){
+    int hours =0;
+    for(int i =0;i<piles.size();i++){
+        hours += (piles[i] + mid-1)/mid;
+        if(hours > h)return false;
+    }
+    return true;
+}
+    int minEatingSpeed(vector<int>& piles, int h) {
+        int s = 1;
+        int e = 0;
+        for(int i = 0;i<piles.size();i++){
+            e = max(e,piles[i]);
+        }
+        int ans =0;
+        while(s<=e){
+            int mid = s+(e-s)/2;
+            if(possible(piles,h,mid)){
+                ans = mid;
+                e =mid-1;
+            }
+            else{
+                s =mid+1;
+            }
+        }
+        return ans;
+    }
+};
