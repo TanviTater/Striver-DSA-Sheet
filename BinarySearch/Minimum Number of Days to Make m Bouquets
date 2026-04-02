@@ -1,0 +1,43 @@
+// LeetCode -> 1482. Minimum Number of Days to Make m Bouquets
+class Solution {
+public:
+bool isPossible(vector<int>&bloomDay ,int m,int k,int mid){
+    int partSize = 0;
+    int bouquets = 0;
+    for(int i =0;i<bloomDay.size();i++){
+        if(bloomDay[i] <= mid){
+            partSize ++;
+            if(partSize == k){
+                partSize =0;
+                bouquets ++;
+                if(bouquets == m){
+                    return true;
+                }
+            }
+        }
+        else{
+            partSize = 0;
+        }
+    }
+    return false;
+}
+    int minDays(vector<int>& bloomDay, int m, int k) {
+        int s = 1;
+        int e = 0;
+        for(int i =0;i<bloomDay.size();i++){
+            e = max(e,bloomDay[i]);
+        }
+        int ans = -1;
+        while(s<=e){
+            int mid = s+(e-s)/2;
+            if(isPossible(bloomDay,m,k,mid)){
+                ans = mid;
+                e = mid-1;
+            }
+            else{
+                s = mid+1;
+            }
+        }
+        return ans;
+    }
+};
