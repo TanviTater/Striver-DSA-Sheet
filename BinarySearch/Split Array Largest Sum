@@ -1,0 +1,42 @@
+// LeetCode -> 410. Split Array Largest Sum
+class Solution {
+public:
+bool isPossible(vector<int>& nums,int k,int mid){
+    int temp =0;
+    int subArray = 1;
+    for(int i =0;i<nums.size();i++){
+        if(nums[i] > mid) return false;
+        if(temp + nums[i] <= mid){
+            temp += nums[i];
+        }
+        else{
+            subArray++;
+            temp = nums[i];
+            if(subArray > k) return false;
+        }
+        
+    }
+    return true;
+}
+    int splitArray(vector<int>& nums, int k) {
+        int s = 0;
+        int e = 0;
+        for(int i =0;i<nums.size();i++){
+            e+=nums[i];
+        }
+        int ans =-1;
+        while(s<=e){
+            int mid = s+(e-s)/2;
+            int sum =0;
+            if(isPossible(nums,k,mid)){
+                ans = mid;
+                e = mid-1;
+            }
+            else{
+                s = mid+1;
+            }
+            
+        }
+        return ans;
+    }
+};
