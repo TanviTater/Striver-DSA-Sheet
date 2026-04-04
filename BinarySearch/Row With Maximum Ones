@@ -1,0 +1,21 @@
+// LeetCode -> 2643. Row With Maximum Ones
+class Solution {
+public:
+    vector<int> rowAndMaximumOnes(vector<vector<int>>& mat) {
+        int maxOnes = 0;
+        int maxOnesIndex = 0;
+        for(int i =0;i<mat.size();i++){
+            int countOnes = 0;
+            for(int j = 0;j<mat[0].size();j++){
+                if(mat[i][j] == 1){
+                    countOnes +=1;
+                }
+            }
+            if(countOnes>maxOnes){
+                maxOnes = countOnes;
+                maxOnesIndex = i;
+            }
+        }
+        return {maxOnesIndex,maxOnes};
+    }
+};
