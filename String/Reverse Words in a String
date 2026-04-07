@@ -2,29 +2,16 @@
 class Solution {
 public:
     string reverseWords(string s) {
-        vector<string>temp;
-        int i =0;
-        string t1 = "";
-        while(i<s.size()){
-            if(s[i]!=' '){
-                t1.push_back(s[i]);
-            }
-            else{
-                temp.push_back(t1);
-                t1 ="";
-            }
-            
-            i++;
-        }
-        temp.push_back(t1);
         string ans ="";
-        for(int i = temp.size()-1;i>=0;i--){
-            if(temp[i] == "")continue;
-            ans.push_back(' ');
-            ans.append(temp[i]);
-           
+        int i = s.size();
+        while(i>=0){
+            while(i>=0 && s[i] == ' ')i--;
+            if(i<0) break;
+            int j =i;
+            while(i>=0 && s[i] != ' ')i--;
+            if(!ans.empty()) ans.push_back(' ');
+            ans.append(s.substr(i+1,j-i));
         }
-        if(ans.size()==0) return "";
-        return ans.substr(1);
+        return ans;
     }
 };
