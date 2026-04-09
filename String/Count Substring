@@ -1,0 +1,23 @@
+// GeeksForGeeks -> Count Substring
+class Solution {
+  public:
+    int countSubstring(string s) {
+        unordered_map<char,int>count;
+        int ans = 0;
+        int i = 0;
+        int j = 0;
+        
+        while(i < s.size()){
+            count[s[i]]++;
+            
+            while(count['a'] > 0 && count['b'] > 0 && count['c'] > 0){
+                ans += s.size() - i;
+                count[s[j]]--;
+                j++;
+            }
+            
+            i++;
+        }
+        return ans;
+    }
+};
