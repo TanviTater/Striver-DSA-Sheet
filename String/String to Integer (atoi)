@@ -1,0 +1,29 @@
+// LeetCode -> 8. String to Integer (atoi)
+class Solution {
+public:
+    int myAtoi(string s) {
+        int ans = 0;
+        int i =0;
+        bool negative = false;
+        while(i<s.size() && s[i] == ' ')i++;
+        if(i == s.size()) return ans;
+        if(s[i] == '-'){
+            negative = true;
+            i++;
+        }
+        else if(s[i] == '+'){
+            i++;
+        }
+        while(i<s.size() && s[i] >= '0' && s[i] <= '9'){
+            int val = s[i]-'0';
+            if (ans > INT_MAX / 10 || 
+               (ans == INT_MAX / 10 && val > 7)) {
+                return negative ? INT_MIN : INT_MAX;
+            }
+            ans = ans*10+val;
+            i++;
+        }
+        if(negative) return -ans;
+        return ans;
+    }
+};
