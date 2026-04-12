@@ -1,0 +1,29 @@
+// LeetCode -> 28. Find the Index of the First Occurrence in a String
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        int ansIndex = -1;
+        
+        int i =0;
+        if(needle.size()>haystack.size()) return -1;
+        for(int i = 0;i<haystack.size();i++){
+            int j = i;
+            int needleIdx = 0;
+            while(needleIdx<needle.size() && j<haystack.size()){
+                if(needle[needleIdx] == haystack[j]){
+                    needleIdx++;
+                    if(needleIdx == needle.size()){
+                        return j-needleIdx+1;
+                    }
+                }
+                else{
+                    break;
+
+                }
+                j++;
+            }
+            
+        }
+        return -1;
+    }
+};
