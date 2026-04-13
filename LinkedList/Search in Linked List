@@ -1,0 +1,13 @@
+// GeeksForGeeks -> Search in Linked List
+class Solution {
+  public:
+    bool searchKey(Node* head, int key) {
+        if(head == NULL )return false;
+        while(head -> next != NULL){
+            if(head -> data == key) return true;
+            head = head -> next;
+        }
+        if(head -> data == key) return true;
+        return false;
+    }
+};
