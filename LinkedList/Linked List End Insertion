@@ -1,0 +1,16 @@
+// GeeksForGeeks -> Linked List End Insertion
+class Solution {
+  public:
+    Node *insertAtEnd(Node *head, int x) {
+        // Code here
+        if(head == NULL) return new Node(x);
+        Node * temp = head;
+        while(head -> next != NULL){
+            head = head -> next;
+        }
+        Node * newNode = new Node(x);
+        head -> next = newNode;
+        head = temp;
+        return head;
+    }
+};
