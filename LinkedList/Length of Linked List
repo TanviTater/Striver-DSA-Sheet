@@ -1,0 +1,13 @@
+// GeeksForGeekd -> Length of Linked List
+class Solution {
+  public:
+    int getCount(Node* head) {
+        if(head == NULL) return 0;
+        int len = 1;
+        while(head -> next != NULL){
+            len += 1;
+            head = head -> next;
+        }
+        return len;
+    }
+};
