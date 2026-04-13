@@ -1,0 +1,31 @@
+// LeetCode -> 888. Fair Candy Swap
+class Solution {
+public:
+    vector<int> fairCandySwap(vector<int>& aliceSizes, vector<int>& bobSizes) {
+        int aliceSum = 0;
+        int bobSum = 0;
+        vector<int>ans(2,-1);
+        unordered_map<int,bool>alice;
+        unordered_map<int,bool>bob;
+        for(int i =0;i<aliceSizes.size();i++){
+            aliceSum += aliceSizes[i];
+            alice[aliceSizes[i]] = true;
+        }
+        for(int i =0;i<bobSizes.size();i++){
+            bobSum += bobSizes[i];
+            bob[bobSizes[i]] = true;
+        }
+        int average = (aliceSum+bobSum)/2;
+        for(int i =0;i<aliceSizes.size();i++){
+            int aliceCurrSum = aliceSum-aliceSizes[i];
+            int aliceTarget = (average-aliceCurrSum);
+            if(bob.find(aliceTarget) != bob.end()){
+               ans[1] = aliceTarget;
+               ans[0] = aliceSizes[i];
+               break;
+            }
+            
+        }
+        return ans;
+    }
+};
