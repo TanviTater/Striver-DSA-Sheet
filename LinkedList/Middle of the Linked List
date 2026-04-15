@@ -1,0 +1,18 @@
+// LeetCode -> 876. Middle of the Linked List
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        if(head == NULL) return NULL;
+        ListNode* fast = head;
+        ListNode* slow = head;
+        while(fast->next != NULL) {
+            fast = fast-> next;
+            if(fast -> next != NULL){
+                fast = fast -> next;
+            }
+            slow = slow-> next;
+        }
+        head = slow;
+        return head;
+    }
+};
