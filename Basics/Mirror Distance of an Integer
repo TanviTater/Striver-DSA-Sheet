@@ -1,0 +1,14 @@
+// LeetCode -> 3783. Mirror Distance of an Integer
+class Solution {
+public:
+    int mirrorDistance(int n) {
+        int temp = n;
+        int revDig = 0;
+        while(temp!=0){
+            int ld = temp%10;
+            revDig = revDig*10+ld;
+            temp=temp/10;
+        }
+        return abs(revDig-n);
+    }
+};
