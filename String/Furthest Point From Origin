@@ -1,0 +1,25 @@
+// LeetCode -> 2833. Furthest Point From Origin
+class Solution {
+public:
+    int furthestDistanceFromOrigin(string moves) {
+        int countL = 0;
+        int countR = 0;
+        for(int i =0;i<moves.size();i++){
+            if(moves[i] == 'L' || moves[i] == '_'){
+                countL++;
+            }
+            else{
+                countL--;
+            }
+        }
+        for(int i =0;i<moves.size();i++){
+            if(moves[i] == 'R' || moves[i] == '_'){
+                countR++;
+            }
+            else{
+                countR--;
+            }
+        }
+        return max(countL,countR);
+    }
+};
