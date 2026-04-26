@@ -1,0 +1,23 @@
+// LeetCode -> 2095. Delete the Middle Node of a Linked List
+class Solution {
+public:
+    ListNode* deleteMiddle(ListNode* head) {
+        int len = 0;
+        int desPos = 0;
+        int currCount = 0;
+        ListNode* temp = head;
+        ListNode* temp2 = head;
+        while(temp != NULL){
+            len++;
+            temp = temp->next;
+        }
+        if(len == 1) return NULL; 
+        desPos = len/2;
+        while(currCount != desPos-1){
+            currCount++;
+            temp2 = temp2->next;
+        }
+        temp2 -> next = temp2 ->next -> next;
+        return head;
+    }
+};
