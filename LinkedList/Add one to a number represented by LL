@@ -1,0 +1,47 @@
+// GeeksForGeeks -> Add one to a number represented by LL
+class Solution {
+  public:
+  Node* reverse(Node* head){
+      Node* prev = NULL;
+      Node* next = NULL;
+      Node* curr = head;
+      while(curr != NULL){
+          next = curr -> next;
+          curr -> next = prev;
+          prev = curr;
+          curr = next;
+      }
+      return prev;
+  }
+
+    Node* addOne(Node* head) {
+        
+        if(head == NULL){
+            return  new Node(1);
+        }
+        head = reverse(head);
+        Node* newList = new Node(0);
+        int carry = 1;
+        int sum = 0;
+        int ld = 0;
+        Node* tail = newList;
+        while(head != NULL){
+            sum = head -> data + carry;
+            ld = sum % 10;
+            Node* node = new Node(ld);
+            tail->next = node;
+            tail = node;
+            carry = sum / 10;
+            head = head -> next;
+        }
+        while(carry != 0){
+            ld = carry % 10;
+            Node* node = new Node(ld);
+            tail->next = node;
+            tail = node;
+            carry /= 10;
+        }
+        newList = reverse(newList->next);
+        return newList;
+    }
+};
