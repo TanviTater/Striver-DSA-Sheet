@@ -1,0 +1,60 @@
+// LeetCode -> 2. Add Two Numbers
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+ListNode* insertAtTail(ListNode* head, int val){
+    ListNode* newList = new ListNode(val);
+    if(head == NULL){
+        return newList;
+    }
+    ListNode* temp = head;
+    while(temp -> next != NULL){
+        temp = temp -> next;
+    }
+    temp -> next = newList;
+    return newList;
+}
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode* newList = new ListNode;
+        int carry = 0;
+        int ld = 0;
+        int sum = 0;
+        while(l1 != NULL && l2 != NULL){
+            sum = l1 -> val + l2 -> val + carry;
+            ld = sum % 10;
+            insertAtTail(newList,ld);
+            carry = sum / 10;
+            l1 = l1->next;
+            l2 = l2 -> next;
+        }
+        while(l1 != NULL){
+            sum = l1 -> val + carry;
+            ld = sum % 10;
+            insertAtTail(newList,ld);
+            carry = sum/10;
+            l1 = l1-> next;
+        }
+        while(l2 != NULL){
+            sum = l2 -> val + carry;
+            ld = sum % 10;
+            insertAtTail(newList,ld);
+            carry = sum / 10;
+            l2 = l2 -> next;
+        }
+        while(carry != NULL){
+            ld = carry % 10;
+            insertAtTail(newList,ld);
+            carry /= 10;
+        }
+        return newList->next;
+    }
+};
