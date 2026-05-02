@@ -1,0 +1,7 @@
+// GeeksForGeeks -> Delete Head of Doubly Linked List
+Node *deleteHead(Node *head) {
+    Node * temp = head;
+    temp = temp->next;
+    temp -> prev = NULL;
+    return temp;
+}
