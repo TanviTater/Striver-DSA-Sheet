@@ -1,0 +1,32 @@
+// Coding Ninjas ->  Insertion In Doubly Linked List
+Node* insert(int k, int val, Node *head) {
+    if(head == NULL) return new Node(val);
+    if(k == 0){
+        Node* newNode = new Node(val);
+        newNode -> next = head;
+        newNode -> prev = NULL;
+        head -> prev = newNode;
+        return newNode;
+    }
+    int count  = 0;
+    Node* temp = head;
+    while(temp != NULL && count != k-1){
+        temp = temp->next;
+        count++;
+    }
+    if(temp == NULL) return head; 
+    Node* newNode = new Node(val);
+    if( temp->next == NULL){
+        temp -> next = newNode;
+        newNode -> prev = temp;
+        newNode -> next = NULL;
+    }
+    else{
+        Node* nextNode = temp->next;
+        temp -> next = newNode;
+        newNode -> prev = temp;
+        newNode -> next = nextNode;
+        nextNode -> prev = newNode;
+    }
+    return head;
+}
