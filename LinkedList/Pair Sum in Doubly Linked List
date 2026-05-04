@@ -1,0 +1,29 @@
+// GeeksForGeeks -> Pair Sum in Doubly Linked List
+class Solution {
+  public:
+    vector<pair<int, int>> findPairsWithGivenSum(Node *head, int target) {
+        Node* i = head;
+        Node* j = head;
+        Node* temp = head;
+        while(temp -> next != NULL){
+            temp = temp-> next;
+        }
+        j = temp;
+        vector<pair<int, int>>ans;
+        while(i!=j && j->next != i){
+            int sum = i->data + j->data;
+            if(sum == target){
+                ans.push_back({i->data,j->data});
+                i= i-> next;
+                j = j -> prev;
+            }
+            else if(sum > target){
+                j = j -> prev;
+            }
+            else{
+                i= i-> next;
+            }
+        }
+        return ans;
+    }
+};
