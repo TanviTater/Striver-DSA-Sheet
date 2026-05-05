@@ -1,0 +1,29 @@
+// CodingNinjas ->  Delete all occurrences of a given key in a doubly linked list
+Node * deleteAllOccurrences(Node* head, int k) {
+    Node* temp = head;
+    Node* prev = NULL;
+    Node* nextNode = NULL;
+    while(temp != NULL){
+        if(temp -> data  == k){
+            if(temp == head){
+                head = head -> next;
+            }
+            else{
+                nextNode = temp -> next;
+                prev = temp -> prev;
+                if(nextNode){
+                    nextNode -> prev = prev;
+                }
+                if(prev){
+                    prev->next = nextNode;
+                }
+                delete temp;
+                temp = nextNode;
+            }
+        }
+        else{
+            temp = temp->next;
+        }
+    }
+    return head;
+}
