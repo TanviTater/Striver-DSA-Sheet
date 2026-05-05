@@ -1,0 +1,38 @@
+// GeeksForGeeks -> Remove duplicates from a sorted DLL
+class Solution {
+  public:
+    Node* removeDuplicates(Node* head) {
+        if(head == NULL || head -> next == NULL) return head;
+        Node* temp = head;
+        Node* forward = NULL;
+        Node* prev = NULL;
+        while(temp != NULL){
+            if(temp->next != NULL && temp-> data == temp->next->data){
+                if(temp == head){
+                    head = head->next;
+                }
+                else{
+                    prev = temp -> prev;
+                    forward = temp -> next;
+                    if(prev != NULL){
+                        prev -> next = forward;
+                    }
+                    if(forward){
+                        forward -> prev = prev;
+                    }
+                    delete temp;
+                    temp = forward;
+                }
+            }
+            else{
+                if(temp -> next != NULL){
+                    temp = temp-> next;
+                }
+                else{
+                    return head;
+                }
+            }
+        }
+        return head;
+    }
+};
