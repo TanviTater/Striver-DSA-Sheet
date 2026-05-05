@@ -1,0 +1,38 @@
+// GeeksForGeeks -> Sort a linked list of 0s, 1s and 2s
+class Solution {
+  public:
+    Node* segregate(Node* head) {
+        if(head == NULL || head -> next == NULL) return head;
+        Node* temp = head;
+        Node* zeroHead = new Node(-1);
+        Node* oneHead = new Node(-1);
+        Node* twoHead = new Node(-1);
+        Node* zeroes = zeroHead;
+        Node* ones = oneHead;
+        Node* twoes = twoHead;
+        while(temp != NULL){
+            Node* nextNode = temp -> next;
+            temp -> next = NULL;
+            if(temp -> data == 0){
+                zeroes->next = temp;
+                zeroes = zeroes->next;
+            }
+            else if(temp->data == 1){
+                ones ->next = temp;
+                ones = ones -> next;
+            }
+            else{
+                twoes -> next = temp;
+                twoes = twoes->next;
+            }
+            temp = nextNode;
+        }
+        zeroes->next = (oneHead->next) ? oneHead->next : twoHead->next;
+        ones->next = twoHead->next;
+        Node* newHead = (zeroHead->next) ? zeroHead->next :
+                        (oneHead->next) ? oneHead->next :
+                        twoHead->next;
+
+        return newHead;
+    }
+};
