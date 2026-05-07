@@ -1,0 +1,11 @@
+// GeeksForGeeks -> Odd or Even
+class Solution {
+  public:
+    bool isEven(int n) {
+        int lastBit = n&1;
+        if(lastBit){
+            return false;
+        }
+        return true;
+    }
+};
