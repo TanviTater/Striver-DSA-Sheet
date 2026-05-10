@@ -1,0 +1,24 @@
+// GeeksForGeeks -> Subsequence with Sum K
+class Solution {
+  public:
+  bool  solve(vector<int>&arr,int k,int i,int sum,vector<vector<int>>& dp){
+      if(sum == k) {
+          return true;
+      }
+      if(i>=arr.size() || sum>k){
+          return false;
+      }
+      if(dp[i][sum] != -1) return dp[i][sum];
+      sum += arr[i];
+      bool take = solve(arr,k,i+1,sum,dp);
+      sum -= arr[i];
+      bool excl = solve(arr,k,i+1,sum,dp);
+      return dp[i][sum] = take || excl ;
+  }
+    bool checkSubsequenceSum(vector<int>& arr, int k) {
+        bool ans = false;
+        int n = arr.size();
+        vector<vector<int>> dp(n + 1, vector<int>(k + 1, -1));
+        return solve(arr,k,0,0,dp);
+    }
+};
