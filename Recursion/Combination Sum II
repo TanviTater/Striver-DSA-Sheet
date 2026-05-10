@@ -1,0 +1,30 @@
+// LeetCode -> 40. Combination Sum II
+class Solution {
+public:
+void solve(vector<int>& nums,int target,int i,int sum,vector<vector<int>>&ans,vector<int>&temp){
+    if(sum == target){
+        ans.push_back(temp);
+        return;
+    }
+    if(i >= nums.size()){
+        return;
+    }
+    if(sum > target){
+        return;
+    }
+    temp.push_back(nums[i]);
+    solve(nums,target,i+1,sum+nums[i],ans,temp);
+    temp.pop_back();
+    while(i+1<nums.size() && nums[i] == nums[i+1]){
+        i++;
+    }
+    solve(nums,target,i+1,sum,ans,temp);
+}
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        vector<vector<int>>ans;
+        vector<int>temp;
+        sort(candidates.begin(),candidates.end());
+        solve(candidates,target,0,0,ans,temp);
+        return ans;
+    }
+};
