@@ -1,0 +1,51 @@
+// LeetCode -> 1665. Minimum Initial Energy to Finish Tasks
+class Solution {
+public:
+bool isPossible(vector<vector<int>>&nums,int mid){
+    for(int i =0;i<nums.size();i++){
+        if(mid>=nums[i][1]){
+            mid = mid- nums[i][0];
+        }
+        else{
+            return false;
+        }
+    }
+    return true;
+}
+    int minimumEffort(vector<vector<int>>& tasks) {
+        if(tasks.size() == 1){
+            return tasks[0][0];
+        }
+        int s = INT_MAX;
+        int e = 0;
+        for(int i=0;i<tasks.size();i++){
+            s = min(s,tasks[i][1]);
+            e += tasks[i][1];
+        }
+        vector<int>diff;
+        for(int i=0;i<tasks.size();i++){
+            int d = tasks[i][1] - tasks[i][0];
+            diff.push_back(d);
+        }
+        vector<pair<int,vector<int>>>temp;
+        for(int i =0;i<tasks.size();i++){
+            temp.push_back({diff[i],tasks[i]});
+        }
+        sort(temp.begin(),temp.end(),greater<pair<int, vector<int>>>());
+        for(int i=0;i<tasks.size();i++){
+            tasks[i] = temp[i].second;
+        }
+        int ans =-1;
+        while(s<e){
+            int mid = s+(e-s)/2;
+            if(isPossible(tasks,mid)){
+                ans = mid;
+                e = mid;
+            }
+            else{
+                s= mid+1;
+            }
+        }
+        return ans;
+    }
+};
