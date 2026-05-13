@@ -1,0 +1,19 @@
+// GeeksForGeeks -> Kth from End of Linked List
+class Solution {
+  public:
+    int getKthFromLast(Node* head, int k) {
+        Node* slow = head;
+        Node* fast = head;
+        int count = 1;
+        while(count<k){
+            fast = fast->next;
+            count++;
+            if(fast == NULL) return -1;
+        }
+        while(fast->next != NULL ){
+            fast = fast -> next;
+            slow = slow -> next;
+        }
+        return slow->data;
+    }
+};
