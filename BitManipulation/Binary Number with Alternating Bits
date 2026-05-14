@@ -1,0 +1,14 @@
+// LeetCode -> 693. Binary Number with Alternating Bits
+class Solution {
+public:
+    bool hasAlternatingBits(int n) {
+        int l2b = n&3;
+        if(l2b == 0 || l2b == 3) return false;
+        while(n>0){
+            int l2b1 = n&3;
+            if(l2b1 != l2b) return false;
+            n>>=2;
+        }
+        return true;
+    }
+};
